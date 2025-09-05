@@ -62,6 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_member'])) {
             $err = "❌ Marriage number must contain only digits (0-9)";
         }
 
+<<<<<<< HEAD
         // Check for duplicate entries
         if (empty($err)) {
             $check_duplicate = $conn->prepare("SELECT id FROM members WHERE 
@@ -83,6 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_member'])) {
             $check_duplicate->close();
         }
 
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
         if (empty($err)) {
             $unit_row = $conn->query("SELECT unit_name FROM units WHERE id=$unit_id")->fetch_assoc();
             $unit_name = $unit_row['unit_name'] ?? '';
@@ -90,6 +93,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_member'])) {
             $stmt = $conn->prepare("INSERT INTO members (community_id, name, phone, dob, confirmation_no, Baptism_no, communial_no, marriage_no, unit) VALUES (?,?,?,?,?,?,?,?,?)");
             $stmt->bind_param("issssssss", $community_id, $name, $phone, $dob, $confirmation_no, $Baptism_no, $communial_no, $marriage_no, $unit_name);
 
+<<<<<<< HEAD
             if ($stmt->execute()) {
                 $ok = "✅ Member added successfully.";
                 // Clear form fields after successful submission
@@ -97,6 +101,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_member'])) {
             } else {
                 $err = "❌ DB error: ". $stmt->error;
             }
+=======
+            if ($stmt->execute()) $ok = "✅ Member added successfully.";
+            else $err = "❌ DB error: ". $stmt->error;
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 
             $stmt->close();
         }
@@ -175,7 +183,10 @@ tr:hover { background:#f1f1f1; }
 
 .phone-format { font-size: 12px; color: #7f8c8d; margin-top: 4px; }
 .number-format { font-size: 12px; color: #7f8c8d; margin-top: 4px; }
+<<<<<<< HEAD
 .duplicate-warning { color: #e74c3c; font-size: 12px; margin-top: 4px; display: none; }
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 </style>
 <script>
 function printTable() { window.print(); }
@@ -257,6 +268,7 @@ function restrictToNumbers(input) {
     // Remove any non-digit characters in real-time
     input.value = input.value.replace(/[^0-9]/g, '');
 }
+<<<<<<< HEAD
 
 function checkDuplicate(field, value, fieldType) {
     if (!value) return;
@@ -285,6 +297,8 @@ function checkDuplicate(field, value, fieldType) {
     })
     .catch(error => console.error('Error:', error));
 }
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 </script>
 </head>
 <body>
@@ -320,59 +334,95 @@ function checkDuplicate(field, value, fieldType) {
         <?php endwhile; ?>
     </select>
 
+<<<<<<< HEAD
     <div>
         <input name="name" placeholder="Full Name *" required 
                value="<?= htmlspecialchars($_POST['name'] ?? '') ?>"
                onblur="checkDuplicate(this, this.value, 'name')">
         <div id="name-warning" class="duplicate-warning"></div>
     </div>
+=======
+    <input name="name" placeholder="Full Name *" required value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     
     <div>
         <input name="phone" placeholder="Phone Number" 
                pattern="^(255\d{9}|0\d{9}|\+255\d{9}|\d{9})$" 
                oninput="validatePhone(this)" 
+<<<<<<< HEAD
                onblur="formatPhone(this); checkDuplicate(this, this.value, 'phone')"
                value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
         <div class="phone-format">Format: 255XXXXXXXXX, 0XXXXXXXXX, or +255XXXXXXXXX</div>
         <div id="phone-warning" class="duplicate-warning"></div>
+=======
+               onblur="formatPhone(this)"
+               value="<?= htmlspecialchars($_POST['phone'] ?? '') ?>">
+        <div class="phone-format">Format: 255XXXXXXXXX, 0XXXXXXXXX, or +255XXXXXXXXX</div>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     </div>
     
     <input type="date" name="date_of_birth" required value="<?= htmlspecialchars($_POST['date_of_birth'] ?? '') ?>">
     
     <div>
+<<<<<<< HEAD
         <input name="confirmation_no" placeholder="Namba ya Kipaimara" 
                oninput="restrictToNumbers(this)" 
                onblur="validateNumbersOnly(this, 'Confirmation number'); checkDuplicate(this, this.value, 'confirmation_no')"
                value="<?= htmlspecialchars($_POST['confirmation_no'] ?? '') ?>">
         <div class="number-format">Numbers only (0-9)</div>
         <div id="confirmation_no-warning" class="duplicate-warning"></div>
+=======
+        <input name="confirmation_no" placeholder="Namba ya Kipaimara *" 
+               oninput="restrictToNumbers(this)" 
+               onblur="validateNumbersOnly(this, 'Confirmation number')"
+               value="<?= htmlspecialchars($_POST['confirmation_no'] ?? '') ?>">
+        <div class="number-format">Numbers only (0-9)</div>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     </div>
     
     <div>
         <input name="Baptism_no" placeholder="Namba ya Ubatizo" 
                oninput="restrictToNumbers(this)" 
+<<<<<<< HEAD
                onblur="validateNumbersOnly(this, 'Baptism number'); checkDuplicate(this, this.value, 'Baptism_no')"
                value="<?= htmlspecialchars($_POST['Baptism_no'] ?? '') ?>">
         <div class="number-format">Numbers only (0-9)</div>
         <div id="Baptism_no-warning" class="duplicate-warning"></div>
+=======
+               onblur="validateNumbersOnly(this, 'Baptism number')"
+               value="<?= htmlspecialchars($_POST['Baptism_no'] ?? '') ?>">
+        <div class="number-format">Numbers only (0-9)</div>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     </div>
     
     <div>
         <input name="communial_no" placeholder="Namba ya Komonio" 
                oninput="restrictToNumbers(this)" 
+<<<<<<< HEAD
                onblur="validateNumbersOnly(this, 'Communial number'); checkDuplicate(this, this.value, 'communial_no')"
                value="<?= htmlspecialchars($_POST['communial_no'] ?? '') ?>">
         <div class="number-format">Numbers only (0-9)</div>
         <div id="communial_no-warning" class="duplicate-warning"></div>
+=======
+               onblur="validateNumbersOnly(this, 'Communial number')"
+               value="<?= htmlspecialchars($_POST['communial_no'] ?? '') ?>">
+        <div class="number-format">Numbers only (0-9)</div>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     </div>
     
     <div>
         <input name="marriage_no" placeholder="Namba ya Ndoa" 
                oninput="restrictToNumbers(this)" 
+<<<<<<< HEAD
                onblur="validateNumbersOnly(this, 'Marriage number'); checkDuplicate(this, this.value, 'marriage_no')"
                value="<?= htmlspecialchars($_POST['marriage_no'] ?? '') ?>">
         <div class="number-format">Numbers only (0-9)</div>
         <div id="marriage_no-warning" class="duplicate-warning"></div>
+=======
+               onblur="validateNumbersOnly(this, 'Marriage number')"
+               value="<?= htmlspecialchars($_POST['marriage_no'] ?? '') ?>">
+        <div class="number-format">Numbers only (0-9)</div>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     </div>
 
     <button name="add_member" type="submit">➕ Add Member</button>
@@ -466,6 +516,7 @@ function validateForm() {
         isValid = false;
     }
     
+<<<<<<< HEAD
     // Check for any duplicate warnings
     const warnings = document.querySelectorAll('.duplicate-warning');
     for (const warning of warnings) {
@@ -476,6 +527,8 @@ function validateForm() {
         }
     }
     
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     return isValid;
 }
 

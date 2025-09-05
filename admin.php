@@ -5,7 +5,10 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 require_once 'db.php';
+<<<<<<< HEAD
 require_once 'lang.php'; // include translation system
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 
 // If user not logged in, redirect
 if (empty($_SESSION['user'])) {
@@ -47,7 +50,13 @@ $counts = [
   'communities' => count_table($conn,'communities'),
   'units' => count_table($conn,'units'),
   'ubatizo'   => count_table($conn,'ubatizo'),
+<<<<<<< HEAD
   'messages'  => count_table($conn,'messages')
+=======
+  'ubatizo'   => count_table($conn,'ubatizo'),
+  'messages'    => count_table($conn,'messages') 
+
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 ];
 ?>
 <!doctype html>
@@ -78,7 +87,10 @@ $counts = [
   .welcome { margin-bottom:18px; background:rgba(255,255,255,0.1); padding:14px 18px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
 
   .chart-container { max-width:600px; margin:30px auto; background: rgba(255,255,255,0.1); padding:20px; border-radius:8px; box-shadow:0 2px 6px rgba(0,0,0,0.2); height:400px; }
+<<<<<<< HEAD
   .lang-switch a { color:#fff; margin-left:10px; text-decoration:none; }
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 </style>
 </head>
 <body>
@@ -89,6 +101,7 @@ $counts = [
     <p><?php echo htmlspecialchars($display_name); ?></p>
   </div>
 
+<<<<<<< HEAD
   <h2><?php echo __t('quick_actions'); ?></h2>
   <a href="leaders.php">👥 <?php echo __t('leaders'); ?> (<?php echo $counts['leaders']; ?>)</a>
   <a href="donations.php">💰 <?php echo __t('donations'); ?> (<?php echo $counts['donations']; ?>)</a>
@@ -98,11 +111,25 @@ $counts = [
   <a href="messages.php">✉️ <?php echo __t('messages'); ?> (<?php echo $counts['messages']; ?>)</a>
   <a href="ubatizo.php">💧 <?php echo __t('ubatizo'); ?> (<?php echo $counts['ubatizo']; ?>)</a>
   <a href="logout.php" class="logout">🚪 <?php echo __t('logout'); ?></a>
+=======
+  <h2>Quick Actions</h2>
+  <a href="leaders.php">👥 Leaders (<?php echo $counts['leaders']; ?>)</a>
+  <a href="donations.php">💰 Donations (<?php echo $counts['donations']; ?>)</a>
+  <a href="events.php">📅 Events (<?php echo $counts['events']; ?>)</a>
+  <a href="members.php">🧑‍🤝‍🧑 Members</a> 
+  <a href="kipaimara.php">👶 Kipaimara (<?php echo $counts['kipaimara']; ?>)</a>
+  <!-- <a href="communities.php">📅 Community (<?php echo $counts['communities']; ?>)</a> -->
+  <!-- <a href="units.php">👶 Unity (<?php echo $counts['units']; ?>)</a> -->
+  <a href="messages.php">👶 Message (<?php echo $counts['messages']; ?>)</a>
+  <a href="ubatizo.php">💧 Ubatizo (<?php echo $counts['ubatizo']; ?>)</a>
+  <a href="logout.php" class="logout">🚪 Logout</a>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 </div>
 
 <div class="main">
   <div class="header">
     <h1>Kyebitembe Parish Management System</h1>
+<<<<<<< HEAD
     <div class="right">
       <?php echo __t('welcome'); ?>, <?php echo htmlspecialchars($display_name); ?>
       <span class="lang-switch">
@@ -114,11 +141,22 @@ $counts = [
 
   <div class="welcome">
     <h2><?php echo __t('welcome'); ?>, <?php echo htmlspecialchars($display_name); ?> 👋</h2>
+=======
+    <div class="right">Logged in: <?php echo htmlspecialchars($display_name); ?></div>
+  </div>
+
+  <div class="welcome">
+    <h2>Welcome, <?php echo htmlspecialchars($display_name); ?> 👋</h2>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
     <p>Manage leaders, communities, donations, and church events all in one place.</p>
   </div>
 
   <section>
+<<<<<<< HEAD
     <h2><?php echo __t('dashboard'); ?></h2>
+=======
+    <h2>Dashboard Overview</h2>
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 
     <!-- Pie Chart -->
     <div class="chart-container">
@@ -134,6 +172,7 @@ const ctx = document.getElementById('dashboardChart').getContext('2d');
 new Chart(ctx, {
     type: 'pie',
     data: {
+<<<<<<< HEAD
         labels: [
             "<?php echo __t('leaders'); ?>",
             "<?php echo __t('donations'); ?>",
@@ -142,6 +181,9 @@ new Chart(ctx, {
             "<?php echo __t('messages'); ?>",
             "<?php echo __t('ubatizo'); ?>"
         ],
+=======
+        labels: ['Leaders', 'Donations', 'Events', 'Kipaimara', 'Ubatizo','messages'],
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
         datasets: [{
             label: 'Total Count',
             data: [
@@ -149,7 +191,13 @@ new Chart(ctx, {
                 <?php echo $counts['donations']; ?>,
                 <?php echo $counts['events']; ?>,
                 <?php echo $counts['kipaimara']; ?>,
+<<<<<<< HEAD
                 <?php echo $counts['messages']; ?>,
+=======
+                //  <?php echo $counts['communities']; ?>,
+                //   <?php echo $counts['units']; ?>,
+                   <?php echo $counts['messages']; ?>,
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
                 <?php echo $counts['ubatizo']; ?>
             ],
             backgroundColor: [
@@ -157,16 +205,24 @@ new Chart(ctx, {
                 'rgba(46, 204, 113, 0.7)',
                 'rgba(241, 196, 15, 0.7)',
                 'rgba(231, 76, 60, 0.7)',
+<<<<<<< HEAD
                 'rgba(155, 89, 182, 0.7)',
                 'rgba(52, 73, 94, 0.7)'
+=======
+                'rgba(155, 89, 182, 0.7)'
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
             ],
             borderColor: [
                 'rgba(52, 152, 219,1)',
                 'rgba(46, 204, 113,1)',
                 'rgba(241, 196, 15,1)',
                 'rgba(231, 76, 60,1)',
+<<<<<<< HEAD
                 'rgba(155, 89, 182,1)',
                 'rgba(52, 73, 94,1)'
+=======
+                'rgba(155, 89, 182,1)'
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
             ],
             borderWidth: 2
         }]
@@ -182,8 +238,11 @@ new Chart(ctx, {
 });
 </script>
 
+<<<<<<< HEAD
 
 <H3>NAije </H3>
 
+=======
+>>>>>>> 391d3a86310207ad560b6208a34c7cb4a99ddf3c
 </body>
 </html>
